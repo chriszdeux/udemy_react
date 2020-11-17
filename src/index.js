@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import heroes from './data/heroes';
+import {getHeroById} from './08-exports';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     const heroe = getHeroById(4);
+//     resolve(heroe)
+//     // reject('hero not found')
+//   }, 2000)
+// });
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// promise.then((message) => {
+//   console.log('hero load done!', message)
+// })
+// .catch(err => console.warn(err));
+
+const getHeroByIdAsync = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const heroes = getHeroById(id);
+      (heroes)
+        ? resolve(heroes)
+        : reject(new Error('fail'))
+    })
+  })
+}
+
+getHeroByIdAsync(3)
+  // .then(hero => console.log('hero loaded: ', hero))
+  .then( console.log )
+  // .catch(error => console.log('cant find hero', error))
+  .catch( console.warn )
